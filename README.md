@@ -13,6 +13,7 @@ Colors Screen             |  Phrases Screen
 ![](#)  |  ![](#) 
 
 ## Application Features & Implements
+- Main vs Background Threads
 
 How to use this repository
 --------------
