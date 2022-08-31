@@ -14,6 +14,8 @@ Colors Screen             |  Phrases Screen
 
 ## Application Features & Implements
 - Main vs Background Threads
+- AsyncTask
+- AsynkTasy Callback Method
 
 How to use this repository
 --------------
