@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Event result) {
+
+            if (result == null){
+                return;
+            }
+
             updateUi(result);
         }
     }
