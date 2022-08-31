@@ -15,6 +15,7 @@
  */
 package com.example.android.didyoufeelit;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
@@ -34,11 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Perform the HTTP request for earthquake data and process the response.
-        Event earthquake = Utils.fetchEarthquakeData(USGS_REQUEST_URL);
+        DyfiAsyncTask dyfiAsyncTask = new DyfiAsyncTask();
+        dyfiAsyncTask.execute(USGS_REQUEST_URL);
 
-        // Update the information displayed to the user.
-        updateUi(earthquake);
     }
 
     /**
@@ -54,4 +53,20 @@ public class MainActivity extends AppCompatActivity {
         TextView magnitudeTextView = (TextView) findViewById(R.id.perceived_magnitude);
         magnitudeTextView.setText(earthquake.perceivedStrength);
     }
+
+    private class DyfiAsyncTask extends AsyncTask<String, Void, Event>{
+
+        @Override
+        protected Event doInBackground(String... strings) {
+            // Perform the HTTP request for earthquake data and process the response.
+            Event earthquake = Utils.fetchEarthquakeData(strings[0]);
+            return earthquake;
+        }
+
+        @Override
+        protected void onPostExecute(Event event) {
+            updateUi(event);
+        }
+    }
+
 }
